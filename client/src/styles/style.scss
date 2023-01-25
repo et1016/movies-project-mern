@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", "Noto Sans TC", sans-serif;
+}
+
+html,
+body {
+  scrollbar-color: gray #000;
+  scrollbar-width: auto;
+}
+
+@import "./Nav";
+@import "./Homepage";
+@import "./Modal";
+@import "./Footer";
+@import "./Search";
+@import "./Register";
+@import "./Favourite";

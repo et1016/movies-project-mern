@@ -1,0 +1,62 @@
+main {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  .favourite-background {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12rem 8rem 5rem 9rem;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.9);
+    .movie-typography {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 3rem;
+      .movieImg-typography {
+        width: 150px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin: 0rem 1rem 1rem 0rem;
+        .favourite-imgContainer {
+          width: 150px;
+          height: 220px;
+          position: relative;
+          border-radius: 8px;
+          overflow: hidden;
+          img {
+            width: 150px;
+            height: 220px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+          }
+          img:hover {
+            transform: scale(1.2);
+          }
+          .favourite {
+            width: 2rem;
+            height: 2rem;
+            position: absolute;
+            top: 0;
+            right: 0;
+            p {
+              font-size: 1.4rem;
+              color: white;
+              margin: 0;
+              cursor: pointer;
+            }
+          }
+        }
+        p {
+          margin: 0.625rem 0rem;
+        }
+      }
+    }
+  }
+}
