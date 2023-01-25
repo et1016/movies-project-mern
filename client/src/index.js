@@ -9,7 +9,7 @@ const root = createRoot(container);
 root.render(
   // <React.StrictMode>
   // 防止 useEffect 執行兩次
-  <BrowserRouter>
+  <BrowserRouter basename="/movies-project-mern">
     <App />
   </BrowserRouter>
   // </React.StrictMode>
