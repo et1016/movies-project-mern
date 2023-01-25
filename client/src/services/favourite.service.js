@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/favourite";
+const API_URL = "https://host-movies-project-mern.onrender.com/api/favourite";
 
 class FavouriteService {
   favourite(user_id, movie_id) {
