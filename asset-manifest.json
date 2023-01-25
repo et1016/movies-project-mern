@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/movies-project-mern/static/css/main.7afaa657.css",
+    "main.js": "/movies-project-mern/static/js/main.b1d5f1de.js",
+    "static/media/background.jpg": "/movies-project-mern/static/media/background.ef17507b397acc3e27f5.jpg",
+    "static/media/errorPicture.jpeg": "/movies-project-mern/static/media/errorPicture.e400d1f9fa695522fc62.jpeg",
+    "static/media/search.png": "/movies-project-mern/static/media/search.5730e4339c5f39cd539b.png",
+    "static/media/logo.png": "/movies-project-mern/static/media/logo.4a8029f08d5dfda83c08.png",
+    "static/media/tmdb.svg": "/movies-project-mern/static/media/tmdb.da3f379f983731ab314ab178dd627943.svg",
+    "index.html": "/movies-project-mern/index.html",
+    "main.7afaa657.css.map": "/movies-project-mern/static/css/main.7afaa657.css.map",
+    "main.b1d5f1de.js.map": "/movies-project-mern/static/js/main.b1d5f1de.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7afaa657.css",
+    "static/js/main.b1d5f1de.js"
+  ]
+}
