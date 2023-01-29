@@ -12,11 +12,14 @@
 - Modal
 ![](https://i.imgur.com/xzxIVQd.jpg)
 
-- Search
-![](https://i.imgur.com/GLwCxMn.jpg)
+- Register / Login
+![](https://i.imgur.com/peOO79R.png)
 
 - Favourite
 ![](https://i.imgur.com/TCmb5Gg.png)
+
+- Search
+![](https://i.imgur.com/GLwCxMn.jpg)
 
 <h2>功能介紹</h2>
 
