@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import FavouriteService from "../services/favourite.service";
-import MovieShow from "../components/Modal";
+import MovieShow from "../components/modal";
 
 const Favourite = (props) => {
   const [searchData, setSearchData] = useState([]);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import MovieShow from "../components/Modal";
+import MovieShow from "../components/modal";
 import FavouriteService from "../services/favourite.service";
 import errorPicture from "../Assets/errorPicture.jpeg";
 

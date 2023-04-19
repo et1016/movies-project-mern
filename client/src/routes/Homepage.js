@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Typewriter from "typewriter-effect";
 import { Navigation, Scrollbar, A11y, FreeMode } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import MovieShow from "../components/Modal";
+import MovieShow from "../components/modal";
 import FavouriteService from "../services/favourite.service";
 import "swiper/css";
 import "swiper/css/navigation";

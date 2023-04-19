@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import Nav from "./components/Nav";
-import Homepage from "./routes/Homepage";
-import Footer from "./components/Footer";
-import Search from "./routes/Search";
-import Register from "./routes/Register";
-import Login from "./routes/Login";
-import Favourite from "./routes/Favourite";
+import Nav from "./components/navigation";
+import Homepage from "./routes/homepage";
+import Footer from "./components/footer";
+import Search from "./routes/search";
+import Register from "./routes/register";
+import Login from "./routes/login";
+import Favourite from "./routes/favourite";
 import AuthService from "./services/auth.service";
 import "./styles/style.css";
 
