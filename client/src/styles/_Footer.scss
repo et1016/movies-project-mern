@@ -32,13 +32,13 @@
   }
 }
 
-@media screen and(max-width:670px) {
+@media screen and (max-width: 670px) {
   .footer {
     padding: 1.5rem 0rem 0rem 1.5rem !important;
   }
 }
 
-@media screen and(max-width:570px) {
+@media screen and (max-width: 570px) {
   .footer {
     display: flex;
     flex-direction: column;
@@ -55,7 +55,7 @@
   }
 }
 
-@media screen and(max-width:300px) {
+@media screen and (max-width: 300px) {
   .footer {
     .copyright {
       img {
