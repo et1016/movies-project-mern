@@ -75,10 +75,10 @@ const Homepage = (props) => {
       </section>
 
       <div className="card-movie">
-        <PopularMovies />
-        <TrendingMovies />
-        <TopRatedMovies />
-        <UpcomingMovies />
+        <PopularMovies currentUser={currentUser} />
+        <TrendingMovies currentUser={currentUser} />
+        <TopRatedMovies currentUser={currentUser} />
+        <UpcomingMovies currentUser={currentUser} />
       </div>
     </main>
   );
