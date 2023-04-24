@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { Navigation, Scrollbar, A11y, FreeMode } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import MovieShow from "../components/modal";
+import MovieShow from "./modal";
 
 const apiKey = process.env.REACT_APP_APIKEY;
 const URL = "https://api.themoviedb.org/3/";
@@ -10,8 +9,6 @@ const imageURL = "https://image.tmdb.org/t/p/w500/";
 
 const UpcomingMovies = (props) => {
   const { currentUser } = props;
-
-  const navigate = useNavigate();
 
   const [upcomingMovies, setUpcomingMovies] = useState(null);
 
@@ -59,7 +56,6 @@ const UpcomingMovies = (props) => {
                         voteAverage={data.vote_average}
                         movie_id={data.id}
                         currentUser={currentUser}
-                        navigate={navigate}
                       />
                     </div>
                     <p>{data.title}</p>

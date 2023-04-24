@@ -1,64 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
+import { useNavigate } from "react-router-dom";
 import FavouriteService from "../services/favourite.service";
 
 const apiKey = process.env.REACT_APP_APIKEY;
 const URL = "https://api.themoviedb.org/3/";
 
-const modalRootEl = document.getElementById("root");
+const MovieShow = (props) => {
+  const {
+    posterPath,
+    title,
+    originalTitle,
+    overview,
+    releaseDate,
+    voteAverage,
+    movie_id,
+    currentUser,
+  } = props;
 
-class Modal extends React.Component {
-  constructor(props) {
-    super(props);
-    this.el = document.createElement("div");
-  }
+  const navigate = useNavigate();
 
-  componentDidMount() {
-    modalRootEl.appendChild(this.el);
-  }
+  const [showModal, setShowModal] = useState(false);
+  const [parsedData, setParsedData] = useState([]);
 
-  componentWillUnmount() {
-    modalRootEl.removeChild(this.el);
-  }
-
-  render() {
-    return ReactDOM.createPortal(this.props.children, this.el);
-  }
-}
-
-class MovieShow extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { showModal: false, parsedData: "" };
-
-    // this.handleShow = this.handleShow.bind(this);
-    // this.handleHide = this.handleHide.bind(this);
-  }
-
-  handleShow = async () => {
-    if (this.props.movie_id) {
-      const movie_id = this.props.movie_id;
-      const dataFetch = await fetch(
-        `${URL}movie/${movie_id}?api_key=${apiKey}&language=zh-TW`
-      );
-      const parsedData = await dataFetch.json();
-      this.setState({ showModal: true });
-      this.setState({ parsedData: (this.state.parsedData = parsedData) });
-    }
+  const handleShow = async () => {
+    const dataFetch = await fetch(
+      `${URL}movie/${movie_id}?api_key=${apiKey}&language=zh-TW`
+    );
+    const parsedData = await dataFetch.json();
+    setParsedData(parsedData);
+    setShowModal(true);
   };
 
-  handleHide = () => {
-    this.setState({ showModal: false });
+  const handleHide = () => {
+    setShowModal(false);
   };
 
-  favouriteHandlar = (e) => {
-    if (this.props.currentUser) {
+  const favouriteHandlar = (e) => {
+    if (currentUser) {
       const isLike = e.target.innerText === "♡";
       if (isLike) {
-        FavouriteService.favourite(
-          this.props.currentUser.user._id,
-          e.target.className
-        )
+        FavouriteService.favourite(currentUser.user._id, e.target.className)
           .then((res) => {
             console.log(res);
           })
@@ -73,7 +55,7 @@ class MovieShow extends React.Component {
         });
       } else {
         FavouriteService.favouriteDelete(
-          this.props.currentUser.user._id,
+          currentUser.user._id,
           e.target.className
         )
           .then((res) => {
@@ -90,90 +72,76 @@ class MovieShow extends React.Component {
         });
       }
     } else {
-      const { navigate } = this.props;
       navigate("/login");
     }
   };
 
-  render() {
-    const modal = this.state.showModal ? (
-      <Modal>
-        <div onClick={this.handleHide} className="modal" />
-
-        <div className="modal-container">
-          <div
-            className="modal-img"
-            style={{ backgroundImage: `url(${this.props.posterPath})` }}
-          />
-
-          <div className="modal-details">
-            <div className="modal-details-top">
-              <h1>{this.props.title}</h1>
-
-              <p className="modal-close-button" onClick={this.handleHide}>
-                ✕
-              </p>
-            </div>
-
-            <h3>{this.props.originalTitle}</h3>
-
-            <div className="modal-movie-type">
-              {this.state.parsedData !== "" &&
-                this.state.parsedData.genres.map((data) => {
-                  return <p key={data.id}>{data.name}</p>;
-                })}
-            </div>
-
-            {this.state.parsedData !== "" && this.state.parsedData.runtime && (
-              <div>
-                <p style={{ marginBottom: "0.5rem" }}>
-                  片長 : {Math.floor(this.state.parsedData.runtime / 60)} 小時{" "}
-                  {Math.floor(this.state.parsedData.runtime % 60)} 分
-                </p>
-              </div>
-            )}
-
-            <div className="modal-movie-p">
-              {this.state.parsedData !== "" &&
-                !this.state.parsedData.last_air_date && (
-                  <p style={{ marginBottom: "2rem" }}>
-                    上映日期：{this.props.releaseDate}．
-                  </p>
-                )}
-
-              <div className="modal-movie-p-evaluation">
-                <p style={{ marginRight: "0.5rem" }}>
-                  評價分數：{this.props.voteAverage} / 10
-                </p>
-                {this.state.parsedData !== "" && (
-                  <p>({this.state.parsedData.vote_count} 個評價)</p>
-                )}
-              </div>
-            </div>
-
-            <p>概述：{this.props.overview}</p>
-          </div>
-        </div>
-      </Modal>
-    ) : null;
-    return (
+  return (
+    <section>
       <div className="app">
-        <img
-          src={this.props.posterPath}
-          onClick={this.handleShow}
-          alt="posterPath"
-        />
-
-        {modal}
+        <img src={posterPath} alt="posterPath" onClick={handleShow} />
 
         <div className="favourite">
-          <p onClick={this.favouriteHandlar} className={this.props.movie_id}>
+          <p className={movie_id} onClick={favouriteHandlar}>
             ♡
           </p>
         </div>
       </div>
-    );
-  }
-}
+
+      {showModal &&
+        ReactDOM.createPortal(
+          <div>
+            <div className="modal" onClick={handleHide} />
+
+            <div className="modal-container">
+              <div
+                className="modal-img"
+                style={{ backgroundImage: `url(${posterPath})` }}
+              />
+
+              <div className="modal-details">
+                <div className="modal-details-top">
+                  <h1>{title}</h1>
+
+                  <p className="modal-close-button" onClick={handleHide}>
+                    ✕
+                  </p>
+                </div>
+
+                <h3>{originalTitle}</h3>
+
+                <div className="modal-movie-type">
+                  {parsedData.genres.map((data) => (
+                    <p key={data.id}>{data.name}</p>
+                  ))}
+                </div>
+
+                <p>
+                  片長：{Math.floor(parsedData.runtime / 60)} 小時{" "}
+                  {Math.floor(parsedData.runtime % 60)} 分
+                </p>
+
+                <div className="modal-movie-p">
+                  <p style={{ marginBottom: "2rem" }}>
+                    上映日期：{releaseDate}．
+                  </p>
+
+                  <div className="modal-movie-p-evaluation">
+                    <p style={{ marginRight: "0.5rem" }}>
+                      評價分數：{voteAverage} / 10
+                    </p>
+                    <p>({parsedData.vote_count} 個評價)</p>
+                  </div>
+                </div>
+
+                <p>概述：{overview}</p>
+              </div>
+            </div>
+          </div>,
+          document.getElementById("root")
+        )}
+    </section>
+  );
+};
 
 export default MovieShow;
